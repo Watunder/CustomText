@@ -1,0 +1,178 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/customtext/src/CustomTextEditor.gd" type="Script" id=1]
+[ext_resource path="res://addons/customtext/src/CustomTextPreview.tscn" type="PackedScene" id=2]
+
+[node name="CustomTextEditor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_right = -6.0
+margin_bottom = -6.0
+rect_pivot_offset = Vector2( -263.634, 76.1486 )
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+margin_right = 300.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -227.238, 81.9909 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KRKR" type="Button" parent="GridContainer/HBoxContainer"]
+margin_right = 148.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "KRKR"
+
+[node name="RmlUi" type="Button" parent="GridContainer/HBoxContainer"]
+margin_left = 152.0
+margin_right = 300.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "RmlUi"
+
+[node name="Panel" type="Panel" parent="GridContainer"]
+margin_left = 304.0
+margin_right = 1268.0
+margin_bottom = 20.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_right = 150.0
+rect_pivot_offset = Vector2( -227.238, 81.9909 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Script" type="Button" parent="GridContainer/Panel/HBoxContainer"]
+margin_right = 148.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+pressed = true
+text = "Script"
+
+[node name="Preview" type="Button" parent="GridContainer/Panel/HBoxContainer"]
+margin_left = 152.0
+margin_right = 300.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+pressed = true
+text = "Preview"
+
+[node name="ItemList" type="ItemList" parent="GridContainer"]
+margin_top = 24.0
+margin_right = 300.0
+margin_bottom = 714.0
+rect_min_size = Vector2( 300, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer"]
+margin_left = 304.0
+margin_top = 24.0
+margin_right = 1268.0
+margin_bottom = 714.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/VBoxContainer"]
+margin_right = 964.0
+margin_bottom = 646.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextEdit" type="TextEdit" parent="GridContainer/VBoxContainer/HBoxContainer"]
+margin_right = 480.0
+margin_bottom = 646.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+highlight_current_line = true
+show_line_numbers = true
+breakpoint_gutter = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer/VBoxContainer/HBoxContainer/TextEdit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 28.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit2" type="TextEdit" parent="GridContainer/VBoxContainer/HBoxContainer/TextEdit"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+highlight_current_line = true
+show_line_numbers = true
+breakpoint_gutter = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="GridContainer/VBoxContainer/HBoxContainer"]
+margin_left = 484.0
+margin_right = 964.0
+margin_bottom = 646.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="GridContainer/VBoxContainer/HBoxContainer/ViewportContainer"]
+size = Vector2( 480, 646 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="CustomTextPreview" parent="GridContainer/VBoxContainer/HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 2 )]
+
+[node name="Panel" type="Panel" parent="GridContainer/VBoxContainer"]
+margin_top = 650.0
+margin_right = 964.0
+margin_bottom = 690.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_right = 150.0
+text = "CustomText Editor"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="GridContainer/HBoxContainer/KRKR" to="." method="_on_KRKR_button_down"]
+[connection signal="button_down" from="GridContainer/HBoxContainer/RmlUi" to="." method="_on_RmlUi_button_down"]
+[connection signal="pressed" from="GridContainer/Panel/HBoxContainer/Script" to="." method="_on_Script_pressed"]
+[connection signal="pressed" from="GridContainer/Panel/HBoxContainer/Preview" to="." method="_on_Preview_pressed"]
